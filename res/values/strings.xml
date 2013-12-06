@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">StreamingAudioPlayer</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_artist">ArtistActivity</string>
+    <string name="title_activity_album">AlbumActivity</string>
+    <string name="get_artists">http://184.73.210.31:9000/api/getArtist</string>
+    <string name="get_albums">http://184.73.210.31:9000/api/getAlbum/</string>
+    <string name="get_songs">http://184.73.210.31:9000/api/getSong/</string>
+    <string name="bucket_suffix">https://s3.amazonaws.com/</string>
+    <string name="title_activity_song">SongActivity</string>
+    <string name="imagebutton">ImageButton</string>
+    <string name="title_activity_controller">ControllerActivity</string>
+
+</resources>
