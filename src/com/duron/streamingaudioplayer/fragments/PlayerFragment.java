@@ -1,4 +1,4 @@
-package com.example.streamingaudioplayer;
+package com.duron.streamingaudioplayer.fragments;
 
 import java.net.URL;
 import java.util.Date;
@@ -20,9 +20,10 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
-import com.duron.streaminaudioplayer.constants.Constants;
+import com.duron.streamingaudioplayer.constants.Constants;
 import com.duron.streamingaudioplayer.interfaces.SeekListener;
 import com.duron.streamingaudioplayer.managers.PlayerManager;
+import com.example.streamingaudioplayer.R;
 
 public class PlayerFragment extends Fragment implements SeekListener{
 

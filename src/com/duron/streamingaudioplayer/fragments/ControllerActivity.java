@@ -1,4 +1,6 @@
-package com.example.streamingaudioplayer;
+package com.duron.streamingaudioplayer.fragments;
+
+import com.example.streamingaudioplayer.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

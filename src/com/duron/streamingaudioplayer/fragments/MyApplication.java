@@ -1,4 +1,4 @@
-package com.example.streamingaudioplayer;
+package com.duron.streamingaudioplayer.fragments;
 
 import android.app.Application;
 import android.content.Context;

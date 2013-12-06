@@ -1,4 +1,4 @@
-package com.duron.streaminaudioplayer.constants;
+package com.duron.streamingaudioplayer.constants;
 
 public class Constants {
 	public static String BUCKET_NAME = "";

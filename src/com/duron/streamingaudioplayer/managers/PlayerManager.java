@@ -9,8 +9,8 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Handler;
 
+import com.duron.streamingaudioplayer.fragments.MyApplication;
 import com.duron.streamingaudioplayer.interfaces.SeekListener;
-import com.example.streamingaudioplayer.MyApplication;
 
 public class PlayerManager{
 

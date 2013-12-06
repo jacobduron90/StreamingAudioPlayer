@@ -16,7 +16,7 @@
         android:id="@+id/controller_player_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.example.streamingaudioplayer.PlayerFragment"
+        android:name="com.duron.streamingaudioplayer.fragments.PlayerFragment"
         android:layout_alignParentBottom="true"
         tools:layout="@layout/activity_main" />
 

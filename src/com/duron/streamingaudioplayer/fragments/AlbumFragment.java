@@ -1,4 +1,4 @@
-package com.example.streamingaudioplayer;
+package com.duron.streamingaudioplayer.fragments;
 
 import java.util.ArrayList;
 
@@ -17,6 +17,7 @@ import com.duron.streamingaudioplayer.clients.AlbumClient;
 import com.duron.streamingaudioplayer.managers.PlayListManager;
 import com.duron.streamingaudioplayer.models.Album;
 import com.duron.streamingaudioplayer.models.Artist;
+import com.example.streamingaudioplayer.R;
 
 public class AlbumFragment extends Fragment {
 
