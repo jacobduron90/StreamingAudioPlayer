@@ -14,12 +14,13 @@ import android.widget.ListView;
 import com.duron.streamingaudioplayer.arrayadapters.SongAdapter;
 import com.duron.streamingaudioplayer.callbacks.ClientCommand;
 import com.duron.streamingaudioplayer.clients.SongClient;
+import com.duron.streamingaudioplayer.managers.PlayListManager;
+import com.duron.streamingaudioplayer.models.Album;
 import com.duron.streamingaudioplayer.models.Song;
 import com.example.streamingaudioplayer.R;
 
 public class SongFragment extends Fragment {
-	private ArrayList<Song> songs = null;
-	private String album;
+	private Album album;
 	private ListView songListView;
 	private SongAdapter songAdapter;
 	private ControllerActivity parent;
@@ -29,8 +30,8 @@ public class SongFragment extends Fragment {
 		@Override
 		public void execute(Object param) {
 			if(param instanceof ArrayList<?>){
-				songs = (ArrayList<Song>)param;
-				songAdapter = new SongAdapter(getActivity(), R.layout.cell_song, songs);
+				album.songs = (ArrayList<Song>)param;
+				songAdapter = new SongAdapter(getActivity(), R.layout.cell_song, album.songs);
 				songListView.setAdapter(songAdapter);
 			}
 			
@@ -45,7 +46,7 @@ public class SongFragment extends Fragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-			Song song = songs.get(arg2);
+			Song song = album.songs.get(arg2);
 			parent.changePlayer(song.trackName, song.trackNumber, song.trackUrl);
 			
 		}};
@@ -69,15 +70,16 @@ public class SongFragment extends Fragment {
 		return view;
 	}
 	
-	public void setAlbum(String alBum){
-		album = alBum;
+	public void setAlbum(){
+		album = PlayListManager.getInstance().getCurrentAlbum();
 	}
 	
 	
 	@Override
 	public void onStart(){
 		super.onStart();
-		songClient.getSong(album, getResources().getString(R.string.get_songs));
+		setAlbum();
+		songClient.getSong(album.albumName, getResources().getString(R.string.get_songs));
 	}
 	
 

@@ -10,6 +10,8 @@ public class PlayListManager {
 
 	private static PlayListManager instance;
 	public ArrayList<Artist> artists;
+	private Artist currentArtist;
+	private Album currentAlbum;
 	
 	
 	
@@ -59,6 +61,21 @@ public class PlayListManager {
 		artist.addSongs(album, songs);
 	}
 	
+	public Artist getCurrentArtist(){
+		return currentArtist;
+	}
+	
+	public void setCurrentArtist(Artist art){
+		this.currentArtist = art;
+	}
+	
+	public Album getCurrentAlbum(){
+		return currentAlbum;
+	}
+	
+	public void setCurrentAlbum(Album alb){
+		this.currentAlbum = alb;
+	}
 	
 	
 	

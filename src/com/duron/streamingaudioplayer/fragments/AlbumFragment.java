@@ -58,10 +58,6 @@ public class AlbumFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
-		if(artistName == null){
-			artistName = savedInstanceState.getString("artist");
-		}
 	}
 	
 	@Override
@@ -79,19 +75,20 @@ public class AlbumFragment extends Fragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-			parent.startSongFragment(albumList.get(arg2).albumName);
+			parent.startSongFragment(albumList.get(arg2));
 		}};
 	
 	
-	public void setArtist(String artist){
-		currentArtist = PlayListManager.getInstance().getArtist(artist);
-		artistName = artist;
+	public void setArtist(){
+		currentArtist = PlayListManager.getInstance().getCurrentArtist();
+		artistName = currentArtist.artistName;
 	}
 	
 	
 	@Override
 	public void onStart(){
 		super.onStart();
+		setArtist();
 		if(!currentArtist.albums.isEmpty()){
 			albumList = currentArtist.albums;
 			setView();

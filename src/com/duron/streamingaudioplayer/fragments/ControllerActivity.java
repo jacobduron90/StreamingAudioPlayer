@@ -1,11 +1,14 @@
 package com.duron.streamingaudioplayer.fragments;
 
-import com.example.streamingaudioplayer.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+
+import com.duron.streamingaudioplayer.managers.PlayListManager;
+import com.duron.streamingaudioplayer.models.Album;
+import com.duron.streamingaudioplayer.models.Artist;
+import com.example.streamingaudioplayer.R;
 
 public class ControllerActivity extends FragmentActivity {
 
@@ -41,22 +44,21 @@ public class ControllerActivity extends FragmentActivity {
 		ft.commit();
 	}
 	
-	public void startAlbumFragment(String artist){
+	public void startAlbumFragment(Artist artist){
 		if(albumFragment == null){
 			albumFragment = new AlbumFragment();
 		}
-		albumFragment.setArtist(artist);
+		PlayListManager.getInstance().setCurrentArtist(artist);
 		switchView(albumFragment);
-		
-		
-	}
+	}	
 	
-	public void startSongFragment(String album){
+	
+	public void startSongFragment(Album album){
 		
 		if(songFragment == null){
 			songFragment = new SongFragment();
 		}
-		songFragment.setAlbum(album);
+		PlayListManager.getInstance().setCurrentAlbum(album);
 		switchView(songFragment);
 	}
 	

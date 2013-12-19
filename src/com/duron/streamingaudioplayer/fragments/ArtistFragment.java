@@ -71,7 +71,7 @@ public class ArtistFragment extends Fragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-			parent.startAlbumFragment(artists.get(arg2).artistName);
+			parent.startAlbumFragment(artists.get(arg2));
 			
 		}};
 
