@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class AlbumFragment extends Fragment {
 				albumList = (ArrayList<Album>)param;
 				if(!albumList.isEmpty()){
 					currentArtist.albums = albumList;
+					PlayListManager.getInstance().save();
 					setView();
 				}
 				
@@ -90,9 +92,11 @@ public class AlbumFragment extends Fragment {
 		super.onStart();
 		setArtist();
 		if(!currentArtist.albums.isEmpty()){
+			Log.i("CACHE HIT", "ALBUM");
 			albumList = currentArtist.albums;
 			setView();
 		}else{
+			Log.i("CACHE MISS", "ALBUM");
 			aClient.getAlbums(artistName, getResources().getString(R.string.get_albums));
 		}
 		

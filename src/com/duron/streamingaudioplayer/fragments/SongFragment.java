@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,9 @@ public class SongFragment extends Fragment {
 		public void execute(Object param) {
 			if(param instanceof ArrayList<?>){
 				album.songs = (ArrayList<Song>)param;
-				songAdapter = new SongAdapter(getActivity(), R.layout.cell_song, album.songs);
-				songListView.setAdapter(songAdapter);
+				PlayListManager.getInstance().save();
+				setView();
+				
 			}
 			
 		}}, new ClientCommand(){
@@ -79,7 +81,24 @@ public class SongFragment extends Fragment {
 	public void onStart(){
 		super.onStart();
 		setAlbum();
-		songClient.getSong(album.albumName, getResources().getString(R.string.get_songs));
+		if(!album.songs.isEmpty())
+		{
+			Log.i("CACHE HIT", "SONGS");
+			setView();
+		}
+		else
+		{
+			Log.i("CACHE MISS", "SONGS");
+			songClient.getSong(album.albumName, getResources().getString(R.string.get_songs));
+		}
+		
+		
+	}
+	
+	public void setView()
+	{
+		songAdapter = new SongAdapter(getActivity(), R.layout.cell_song, album.songs);
+		songListView.setAdapter(songAdapter);
 	}
 	
 

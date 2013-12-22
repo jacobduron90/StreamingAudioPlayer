@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class ArtistFragment extends Fragment {
 			if(param instanceof ArrayList<?>){
 				artists = (ArrayList<Artist>) param;
 				PlayListManager.getInstance().artists = artists;
+				PlayListManager.getInstance().save();
 				setView();
 			}
 			
@@ -79,10 +81,14 @@ public class ArtistFragment extends Fragment {
 	@Override
 	public void onStart(){
 		super.onStart();
-		if(!PlayListManager.getInstance().artists.isEmpty()){
+		if(!PlayListManager.getInstance().artists.isEmpty())
+		{
+			Log.i("CACHE HIT", "ARTIST");
 			artists = PlayListManager.getInstance().artists;
 			setView();
-		}else{
+		}else
+		{
+			Log.i("CACHE MISS", "ARTIST");
 			aClient.getArtist();
 		}
 		
