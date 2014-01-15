@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SongFragment" >
+    tools:context=".SongFragment"
+    android:background="@color/backgroundColor" >
 
     <ListView
         android:id="@+id/song_listview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/cell_row" />
+        tools:listitem="@layout/cell_row"
+        android:divider="@color/dividerColor"
+        android:dividerHeight="1dip" />
 
 </RelativeLayout>

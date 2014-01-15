@@ -2,13 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
- 	android:padding="15dp" >
+ 	android:padding="15dp"
+ 	android:background="@color/backgroundColor" >
     <TextView
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:id="@+id/cell_song_tracknumber_textview"
     	    android:layout_centerVertical="true"
     	    android:layout_marginRight="15dp"
+    	    android:textColor="@color/textColor"
+    	    android:textStyle="bold"
+    	    android:textSize="20sp"
     	    />
     <TextView
     	    android:layout_width="wrap_content"
@@ -16,6 +20,9 @@
     	    android:id="@+id/cell_song_trackname_textview"
     	    android:layout_centerVertical="true"
     	    android:layout_toRightOf="@+id/cell_song_tracknumber_textview"
+    	    android:textColor="@color/textColor"
+    	    android:textStyle="bold"
+    	    android:textSize="20sp"
     	    />
     
 

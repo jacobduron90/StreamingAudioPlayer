@@ -3,8 +3,10 @@ package com.duron.streamingaudioplayer.fragments;
 import java.net.URL;
 import java.util.Date;
 
+import android.annotation.TargetApi;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -28,7 +31,6 @@ import com.example.streamingaudioplayer.R;
 public class PlayerFragment extends Fragment implements SeekListener{
 
 	private ImageButton buttonPlayPause;
-	private ImageButton	buttonStop;
 	private SeekBar seekBarProgress;
 
 	private AmazonS3Client s3Client = new AmazonS3Client(
@@ -43,6 +45,7 @@ public class PlayerFragment extends Fragment implements SeekListener{
 	String prefix;
 	String songUrl;
 	Uri songUri;
+	
 	private boolean hasBeenClicked = true;
 	
 	PlayerManager playerM;
@@ -53,7 +56,7 @@ public class PlayerFragment extends Fragment implements SeekListener{
 		super.onCreate(savedInstanceState);
 
 		playerM = PlayerManager.getInstance();
-
+		
 		
 	}
 	
@@ -80,20 +83,24 @@ public class PlayerFragment extends Fragment implements SeekListener{
 	
 	
 	
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View view = inflater.inflate(R.layout.activity_main, container, false);
 		buttonPlayPause = (ImageButton)view.findViewById(R.id.ButtonTestPlayPause);
 		buttonPlayPause.setOnClickListener(playPauseListener);
 		
-		buttonStop = (ImageButton)view.findViewById(R.id.stopButton);
-		buttonStop.setOnClickListener(stopListener);
+		
+		
 		
 		seekBarProgress = (SeekBar)view.findViewById(R.id.SeekBarTestPlay);
 		seekBarProgress.setMax(99);
 		//seekBarProgress.setOnTouchListener(this);
 		tvtrackName = (TextView) view.findViewById(R.id.trackName);
 		tvtrackNumber = (TextView) view.findViewById(R.id.trackNumber);
+		
+		
+		
 		
 		
 		return view;
@@ -117,13 +124,22 @@ public class PlayerFragment extends Fragment implements SeekListener{
 
 		@Override
 		public void onClick(View v) {
+			if(PlayerFragment.this.songUrl == null)
+			{
+				Toast.makeText(getActivity(), "No song selected", Toast.LENGTH_SHORT).show();
+				return;
+				
+			}
+			
 			if(hasBeenClicked){
 				hasBeenClicked = false;
 				playerM.pausePlayer();
+				buttonPlayPause.setImageResource(R.drawable.play_gray);
+				
 			}else{
 				hasBeenClicked = true;
 				playerM.startPlayer();
-				
+				buttonPlayPause.setImageResource(R.drawable.pause_white);
 			}
 			
 			
@@ -132,15 +148,7 @@ public class PlayerFragment extends Fragment implements SeekListener{
 		
 	};
 	
-	OnClickListener stopListener = new OnClickListener(){
-
-		@Override
-		public void onClick(View v) {
-			playerM.stopPlayer();
-			
-		}
-		
-	};
+	
 	
 	public void resultCallBack(S3TaskResult result){
 		songUrl  = result.urlss;
@@ -154,6 +162,8 @@ public class PlayerFragment extends Fragment implements SeekListener{
 	private void playSong(Uri myUri){
 		playerM.setSongAndPlay(myUri);
 		playerM.setSeekListener(this);
+		buttonPlayPause.setImageResource(R.drawable.pause_white);
+		hasBeenClicked = true;
 		
 	}
 	

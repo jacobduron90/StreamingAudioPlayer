@@ -6,12 +6,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ArtistFragment" >
+    tools:context=".ArtistFragment"
+    android:background="@color/backgroundColor" >
 
     <ListView
         android:id="@+id/artist_listview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/cell_row" />
+        tools:listitem="@layout/cell_row"
+        android:divider="@color/dividerColor"
+        android:dividerHeight="1dp" />
 
 </RelativeLayout>
