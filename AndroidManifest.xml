@@ -13,12 +13,13 @@
     <application
         android:name="com.duron.streamingaudioplayer.fragments.MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/streaming_audio_icon"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
         
         <activity
             android:name="com.duron.streamingaudioplayer.fragments.ControllerActivity"
+            android:screenOrientation="portrait"
              >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
